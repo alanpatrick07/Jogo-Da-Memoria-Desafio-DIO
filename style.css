@@ -1,0 +1,107 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgba(40, 16, 0, 0.982);
+    background-image:left url(https://toppng.com/uploads/preview/yami-yugi-s01-yu-gi-oh-duel-identity-11563495900xifil95mkz.png) ;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+a,
+a:active {
+    color:rgba(202, 87, 11, 0.982);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgba(234, 168, 123, 0.982);
+}
+
+header,
+footer {
+    align-items: center;
+    background-color: rgba(231, 101, 15, 0.982);
+    display:flex;
+    height: 50px;
+    justify-content: center;
+    width: 100%;
+}
+
+header {
+    flex-direction: row;
+}
+
+footer {
+    flex-direction: column;
+}
+
+nav li {
+    display: block;
+}
+
+.memory-game {
+    height: 75vh;
+    width: 75vh;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    perspective: 1000px; /* perspectiva do usuario no eixo z, quanto maior, maior o efeito da perspectiva */
+}
+
+.card {
+    height: calc( 33.333% - 10px);
+    width: calc(25% - 10px);
+    margin: 5px;
+    position: relative;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    cursor: pointer;
+    transform: scale(1);
+    transform-style: preserve-3d; /* adiciona perspectiva 3d, para que o elemento nao fique achatada no plano */
+    transition: transform .9s; /* adiciona efeito de movimento ao flip do card */
+}
+
+.card:active{
+    transform: scale(0.97);
+    transition: transform .2s;
+}
+
+.card-front,
+.card-back {
+  background-color: rgba(205, 103, 13, 0.814);
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+
+  backface-visibility: hidden; /* todo elemento tem uma frente e um verso (ao contrario, como um espelho.) essa propriedade retira o verso */
+}
+
+.card-front {
+    transform: rotateY(180deg); /* antes, o verso aparecia transparente, pois ambas as imagens tem position absolute, ao girar no eixo Y, elas ficaram com os versos virados */
+}
+
+/* flip card animation */
+
+.card.flip {
+    transform: rotateY(180deg);
+}
+
+.icon {
+    font-size: 2rem;
+}
+.icon:hover {
+    cursor: pointer;
+}
+
+@media only screen and (orientation: portrait) {
+    .memory-game {
+        height: 75vw;
+        width: 75vw;
+    }
+}
